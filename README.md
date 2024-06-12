@@ -1,5 +1,5 @@
 # Cloud Automator CLI
-Cloud Automator CLI (`ca`) は、Cloud Automator のトリガージョブと後処理の情報を取得するためのコマンドラインツールです。
+Cloud Automator CLI (`ca`) は、Cloud Automator のトリガージョブと後処理の情報をエクスポート・インポートするためのコマンドラインツールです。
 
 - [Cloud Automator](https://cloudautomator.com/)
 
@@ -65,45 +65,102 @@ set CLOUDAUTOMATOR_API_KEY=APIキー
 $Env:CLOUDAUTOMATOR_API_KEY="APIキー"
 ```
 
-## ジョブの情報を取得する
+## ジョブの情報をエクスポートする
 
-すべてのジョブの情報を取得する。
-
-```sh
-ca jobs
-```
-
-IDを指定してジョブを取得する。
+すべてのジョブの情報をエクスポートする。
 
 ```sh
-ca jobs --id <job_id>
+ca jobs export
 ```
 
-## 後処理の情報を取得する
-
-すべての後処理の情報を取得する
+IDを指定してジョブをエクスポートする。
 
 ```sh
-ca post-processes
+ca jobs export --id <job_id>
 ```
 
-IDを指定して後処理の情報を取得する
+### オプション
+#### **--output, -o**
 
-```sh
-ca post-process --id <post_process_id>
-```
-
-## オプション
-### **--output, -o**
-
-取得した結果の出力形式を指定する。
+エクスポートした結果の出力形式を指定する。
 
 ```sh
 # 例: YAML形式で出力する
-ca jobs --id 1234 --output yaml
+ca jobs export --id 1234 --output yaml
 
 # 例: JSON形式で出力する
-ca jobs --id 1234 --output json
+ca jobs export --id 1234 --output json
+```
+
+## 後処理の情報をエクスポートする
+
+すべての後処理の情報をエクスポートする
+
+```sh
+ca post-processes export
+```
+
+IDを指定して後処理の情報をエクスポートする
+
+```sh
+ca post-processes export --id <post-process-id>
+```
+
+### オプション
+#### **--output, -o**
+
+エクスポートした結果の出力形式を指定する。
+
+```sh
+# 例: YAML形式で出力する
+ca post-processes export --id 1234 --output yaml
+
+# 例: JSON形式で出力する
+ca post-processes export --id 1234 --output json
+```
+
+## ジョブをインポートする
+
+ファイルを指定してジョブをインポートする
+
+```sh
+ca jobs import <filepath>
+```
+
+## 後処理をインポートする
+
+ファイルを指定して後処理をインポートする
+
+```sh
+ca post-processes import <filepath>
+```
+
+## ジョブのインポート結果を確認する
+
+全てのジョブのインポート結果を確認する
+
+```sh
+ca jobs import-results
+```
+
+IDを指定してジョブのインポート結果を確認する
+
+```sh
+ca jobs import-results --id <import-id>
+```
+
+## 後処理のインポート結果を確認する
+
+全ての後処理のインポート結果を確認する
+
+```sh
+ca post-processes import-results
+```
+
+IDを指定して後処理のインポート結果を確認する
+
+```sh
+ca post-processes import-results --id <import-id>
 ```
 
 # アップデート
